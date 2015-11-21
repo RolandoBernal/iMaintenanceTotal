@@ -1,4 +1,8 @@
-# Maintenance You
+# iMaintenanceTotal
+
+Back-End Final Capstone Project app to record and remind you all things maintenance you should do.
+
+###User Stories: (Basic Acceptance Criteria)
 * As a user I can login and create a user profile.
 * As a user, once logged in and my profile is created, I have access to all the default tasks of the year
 * As a user I can select a maintenance task from the default tasks list to my personal list
@@ -10,3 +14,6 @@
 * As a user I can register my phone number to get reminders of a task
 * As a user I can register a second phone number (from a different person) to get the same reminders
 
+###Advance Acceptance Criteria:
+
+###Technologies you should use:
