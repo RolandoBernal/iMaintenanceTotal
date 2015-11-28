@@ -25,6 +25,7 @@ namespace iMaintenanceTotal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootswatch.css",
                       "~/Content/site.css"));
         }
     }
