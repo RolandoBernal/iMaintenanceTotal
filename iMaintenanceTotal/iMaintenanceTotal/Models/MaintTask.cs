@@ -17,6 +17,7 @@ namespace iMaintenanceTotal.Models
         public DateTime RemindMeOn { get; set; }
         public string RemindMeBy { get; set; }
         public ApplicationUser Owner { get; set; }
+
     }
 }
 
@@ -32,4 +33,5 @@ Completed: bool
 Frequency: date
 Reminder: date
 Category: string
+Owner: ApplicationUser
 */
