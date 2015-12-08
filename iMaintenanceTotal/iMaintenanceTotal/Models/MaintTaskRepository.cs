@@ -10,8 +10,6 @@ namespace iMaintenanceTotal.Models
     {
         private MaintTaskContext context;
 
-        // DbContext is now ApplicationDbContext which gives use access to the
-        // table containing the users.
         public IDbSet<ApplicationUser> Users { get { return context.Users; } }
 
         public MaintTaskRepository()
