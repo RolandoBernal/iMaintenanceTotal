@@ -44,16 +44,13 @@ namespace iMaintenanceTotal.Models
             return query.Count();
         }
 
-        public bool AddMaintTask(int _maintTask_id, MaintTask _task)
+        public bool AddMaintTask(MaintTask _task)
         {
-            var query = from mt in context.MaintTasks where mt.MaintTaskId == _maintTask_id select mt;
-            MaintTask found_maintTask = null;
+            
             bool result = true;
             try
             {
-                found_maintTask = query.Single<MaintTask>();
-                _task.CreatedAt = DateTime.Now;
-                found_maintTask.CreatedAt.Add(_task);
+                context.MaintTasks.Add(_task);
                 context.SaveChanges();
             }
             catch (InvalidOperationException)

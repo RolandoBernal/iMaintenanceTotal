@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Html.Partial("_NavPartial")
+    <div><h1>TEST - This is the MaintTask List Page</h1></div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
