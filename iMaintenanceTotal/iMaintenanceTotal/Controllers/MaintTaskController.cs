@@ -28,7 +28,8 @@ namespace iMaintenanceTotal.Controllers
         // GET: MaintTask
         public ActionResult Index()
         {
-            return View();
+            var maintTasks = repository.GetAllMaintTasks();
+            return View(maintTasks);
         }
 
         // GET: MaintTask/Details/5

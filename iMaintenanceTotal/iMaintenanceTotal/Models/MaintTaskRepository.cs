@@ -31,7 +31,7 @@ namespace iMaintenanceTotal.Models
             return my_maintTask;
         }
 
-        public virtual List<MaintTask> GetAllBoards()
+        public virtual List<MaintTask> GetAllMaintTasks()
         {
             return context.MaintTasks.ToList();
         }

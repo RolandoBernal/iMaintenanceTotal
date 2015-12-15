@@ -1,14 +1,64 @@
-﻿@model IEnumerable<iMaintenanceTotal.Models.MaintTask>
+﻿@using Microsoft.AspNet.Identity;
+
+@model IEnumerable<iMaintenanceTotal.Models.MaintTask>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron text-center">
-    <h1>This is the MaintTask List of tasks page</h1>
-    
+
+    <br><br>
+    <div class="container-fluid main-div">
+        <div class="col-md-12">
+            <div class="row div-background">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="row ">
+                        <div class="user-profile">
+                            <h1>@Html.ActionLink("Welcome " + User.Identity.GetUserName() + "!", "Index")</h1>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">These are your current reminders:</div>
+                                    <div class="panel-body">
+                                        <div>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Task</th>
+                                                        <th>Category</th>
+                                                        <th>Reminder</th>
+                                                        <th>Completed</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody class="row">
+                                                    @foreach (var item in Model)
+                                                    { 
+                                                        <tr>
+                                                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.RemindMeBy)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Completed)</td>
+                                                            <td>@Html.ActionLink("Edit", "Edit", new { id = item.MaintTaskId })</td>
+                                                            <td>@Html.ActionLink("Back to List", "Index")</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div> <!-- END of Panel -->
+                        </div>
+                        <!-- END of User Profile -->
+                    </div>
+                </div> <!-- END of col-md-10 -->
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
-
-<div class="row"></div>
-
 
