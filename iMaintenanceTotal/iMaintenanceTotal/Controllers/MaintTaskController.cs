@@ -28,6 +28,10 @@ namespace iMaintenanceTotal.Controllers
         // GET: MaintTask
         public ActionResult Index()
         {
+            
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser me = repository.Users.FirstOrDefault(u => u.Id == user_id);
+            ViewBag.DisplayName = me.DisplayName;
             var maintTasks = repository.GetAllMaintTasks();
             return View(maintTasks);
         }
