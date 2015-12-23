@@ -50,7 +50,7 @@ namespace iMaintenanceTotal.Controllers
 
         // POST: MaintTask/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateMaintTask(FormCollection collection)
         {
             try
             {

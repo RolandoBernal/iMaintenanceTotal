@@ -60,13 +60,18 @@ namespace iMaintenanceTotal.Tests.Models
             mock_maintTasks.As<IQueryable<MaintTask>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mock_maintTasks.As<IQueryable<MaintTask>>().Setup(m => m.Expression).Returns(data.Expression);
 
+            // This allows MaintTaskRepository to call MaintTasks.Add and have it update the my_maintTasks instance and Enumerator
+            // Connect DbSet.Add to List.Add so they work together
+            mock_maintTasks.Setup(m => m.Add(It.IsAny<MaintTask>())).Callback((MaintTask mt) => my_maintTasks.Add(mt));
+            mock_maintTasks.Setup(m => m.Remove(It.IsAny<MaintTask>())).Callback((MaintTask mt) => my_maintTasks.Remove(mt));
+
             mock_context.Setup(m => m.MaintTasks).Returns(mock_maintTasks.Object);
         }
 
         [TestInitialize]
         public void Initialize()
         {
-            var mock_context = new Mock<MaintTaskContext>();
+            mock_context = new Mock<MaintTaskContext>();
             _maintTasks = MaintTaskRepositoryEnsureICanGetMaintTask();
             mock_maintTasks = new Mock<IDbSet<MaintTask>>();
             my_maintTasks = new List<MaintTask>();
@@ -116,76 +121,75 @@ namespace iMaintenanceTotal.Tests.Models
 
             ConnectMocksToDataSource();
 
-
             bool actual = maintTask_repo.AddMaintTask(list);
 
             Assert.AreEqual(1, maintTask_repo.GetAllMaintTasks().Count);
             Assert.IsTrue(actual);
         }
 
+
         [TestMethod]
         public void MaintTaskRepositoryEnsureICanDeleteAMaintTask()
-        {
-            //Begin Arrange
-            my_maintTasks.AsQueryable();
-            string title = "Clean Air Filters";
+        { 
+            // Arrange
+            MaintTaskRepository maintTask_repo = new MaintTaskRepository(mock_context.Object);
+            MaintTask m_task1 = new MaintTask()
+            {
+                MaintTaskId = 1,
+                Title = "my maint task",
+                Frequency = "Every Year"
+            };
+            MaintTask m_task2 = new MaintTask()
+            {
+                MaintTaskId = 2,
+                Title = "my maint task 2",
+                Frequency = "Every Year"
+            };
+
+            my_maintTasks.Add(m_task1);
+            my_maintTasks.Add(m_task2);
 
             ConnectMocksToDataSource();
-            mock_maintTasks.Setup(m => m.Add(It.IsAny<MaintTask>())).Callback((MaintTask mt) => my_maintTasks.Add(mt));
-            mock_maintTasks.Setup(m => m.Remove(It.IsAny<MaintTask>())).Callback((MaintTask mt) => my_maintTasks.Remove(mt));
 
-            MaintTaskRepository repo = new MaintTaskRepository(mock_context.Object);
-            //End Arrange
+            // Act
+            bool success = maintTask_repo.DeleteMaintTask(m_task1.MaintTaskId);
+            MaintTask m_task_found1 = maintTask_repo.GetMaintTaskById(m_task1.MaintTaskId);
+            MaintTask m_task_found2 = maintTask_repo.GetMaintTaskById(m_task2.MaintTaskId);
 
-            //Begin Act
-            MaintTask removed_maintTask = repo.CreateMaintTask(title, owner);
-            //End Act
-
-            //Begin Assert
-            Assert.IsNotNull(removed_maintTask);
-            mock_maintTasks.Verify(m => m.Add(It.IsAny<MaintTask>()));
-            //mock_context.Verify(x => x.SaveChanges(), Times.Once());
-            Assert.AreEqual(1, repo.GetMaintTasksCount());
-            repo.DeleteMaintTask(removed_maintTask);
-            mock_maintTasks.Verify(x => x.Remove(It.IsAny<MaintTask>()));
-            //mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
-            Assert.AreEqual(0, repo.GetMaintTasksCount());
-
-            //End Assert
+            // Assert
+            Assert.IsTrue(success);
+            //Assert.IsNull(m_task_found1);
+            //Assert.AreEqual(1, maintTask_repo.GetAllMaintTasks().Count);
+            Assert.AreEqual(1, maintTask_repo.MaintTasks.Count());
+            Assert.AreEqual("my maint task 2", m_task_found2.Title);
         }
 
         [TestMethod]
-        public void ListEnsureICanEditAProject()
+        public void MaintTaskRepositoryEnsureICanEditAMaintTask()
         {
-            //Begin Arrange
-            my_maintTasks.AsQueryable();
+            // Arrange
+            MaintTaskRepository maintTask_repo = new MaintTaskRepository(mock_context.Object);
+            MaintTask m_task1 = new MaintTask { MaintTaskId = 1, Title = "My Maint Task" };
+            MaintTask m_task2 = new MaintTask { MaintTaskId = 2, Title = "My Maint Task 2" };
 
-            mock_maintTasks.Setup(m => m.Add(It.IsAny<MaintTask>())).Callback((MaintTask mt) => my_maintTasks.Add(mt));
+            my_maintTasks.Add(m_task1);
+            my_maintTasks.Add(m_task2);
 
+            ConnectMocksToDataSource();
 
-            MaintTaskRepository repo = new MaintTaskRepository(mock_context.Object);
+            // Act
+            var newTitle1 = "My Maint Task NEW 1";
+            var newTitle2 = "My Maint Task NEW 2";
+            m_task1.Title = newTitle1;
+            m_task2.Title = newTitle2;
+            var mt_success1 = maintTask_repo.UpdateMaintTask(m_task1);
+            var mt_success2 = maintTask_repo.UpdateMaintTask(m_task2);
+            var actual1 = maintTask_repo.GetMaintTaskById(m_task1.MaintTaskId);
+            var actual2 = maintTask_repo.GetMaintTaskById(m_task2.MaintTaskId);
 
-
-            //End Arrange
-
-            MaintTask maintTaskToChange = repo.CreateMaintTask("Clean Gutters", owner);
-            //Begin Act
-
-            // Begin Assert
-            Assert.IsNotNull(maintTaskToChange);
-            Assert.AreEqual(1, repo.GetMaintTasksCount());
-
-            maintTaskToChange.Title = "Cut the grass";
-
-            repo.UpdateMaintTask(maintTaskToChange.Title);
-
-            //End Act
-
-            //Begin Assert
-            var updatedProject = repo.GetMaintTaskById(maintTaskToChange.MaintTaskId);
-
-            //Assert.AreEqual(updatedProject.ProjectName, "blah blah");
-            //End Assert
+            // Assert
+            Assert.AreEqual(newTitle1, actual1.Title);
+            Assert.AreEqual(newTitle2, actual2.Title);
         }
 
 

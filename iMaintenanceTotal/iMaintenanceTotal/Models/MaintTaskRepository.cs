@@ -11,6 +11,7 @@ namespace iMaintenanceTotal.Models
         private MaintTaskContext context;
 
         public IDbSet<ApplicationUser> Users { get { return context.Users; } }
+        public IDbSet<MaintTask> MaintTasks { get { return context.MaintTasks; } }
 
         public MaintTaskRepository()
         {
@@ -66,25 +67,60 @@ namespace iMaintenanceTotal.Models
         }
 
 
-        public void DeleteMaintTask(MaintTask removed_maintTask)
+        public bool DeleteMaintTask(int maintTaskId)
         {
-            MaintTask my_maintTask = removed_maintTask;
-            context.MaintTasks.Remove(my_maintTask);
-            context.SaveChanges();
+            var result = true;
+            try
+            {
+                //var query = context.MaintTasks.Where(mt => mt.MaintTaskId == maintTaskId);
+                var query = from mt in context.MaintTasks where mt.MaintTaskId == maintTaskId select mt;
+                var maintTaskToDelete = query.SingleOrDefault();
+                context.MaintTasks.Remove(maintTaskToDelete);
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                result = false;
+                throw;
+            }
+            return result;
         }
 
-        public MaintTask UpdateMaintTask(string title)
+        public bool UpdateMaintTask(int MaintTaskId, string newTitle)
         {
-            var query = context.MaintTasks.Where(mt => mt.Title == title);
-            var result = query.First();
+            var success = true;
+            try
+            {
+                var query = context.MaintTasks.Where(mt => mt.MaintTaskId == MaintTaskId);
+                var result = query.First();
+                result.Title = newTitle;
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+            return success;
+        }
 
+        public MaintTask UpdateMaintTask(MaintTask updatedMaintTask)
+        {
+            var query = (from mt in context.MaintTasks
+                         where mt.MaintTaskId == updatedMaintTask.MaintTaskId
+                         select mt);
+            var mTaskToUpdate = query.First();
+            mTaskToUpdate.Title = updatedMaintTask.Title;
+            mTaskToUpdate.Notes = updatedMaintTask.Notes;
+            mTaskToUpdate.Frequency = updatedMaintTask.Frequency;
+            mTaskToUpdate.RemindMeBy = updatedMaintTask.RemindMeBy;
+            mTaskToUpdate.RemindMeOn = updatedMaintTask.RemindMeOn;
             context.SaveChanges();
-            return result;
+            return mTaskToUpdate;
         }
 
         public MaintTask GetMaintTaskById(int id)
         {
-            var maintTask = (from mt in context.MaintTasks where mt.MaintTaskId == id select mt).First();
+            var maintTask = (from mt in context.MaintTasks where mt.MaintTaskId == id select mt).SingleOrDefault();
             return maintTask;
         }
 
@@ -93,6 +129,7 @@ namespace iMaintenanceTotal.Models
             var query = from mt in context.MaintTasks where mt.Owner.Id == user1.Id select mt;
             return query.ToList<MaintTask>(); // Same as query.ToList();
         }
+
 
     }
 }
