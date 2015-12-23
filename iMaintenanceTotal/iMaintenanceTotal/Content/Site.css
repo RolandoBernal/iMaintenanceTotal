@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.modal-dialog {
+    position: initial;
+    width: auto;
+    margin: 10px;
+}

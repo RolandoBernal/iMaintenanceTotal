@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MaintTaskControllerTests.cs" />
     <Compile Include="Models\MaintTaskTests.cs" />
     <Compile Include="Models\MaintTaskRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

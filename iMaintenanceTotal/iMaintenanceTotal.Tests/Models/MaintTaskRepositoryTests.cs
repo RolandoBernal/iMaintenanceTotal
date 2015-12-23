@@ -46,8 +46,6 @@ namespace iMaintenanceTotal.Tests.Models
             );
 
             return new_list;
-            
-
         }
 
         private void ConnectMocksToDataSource()

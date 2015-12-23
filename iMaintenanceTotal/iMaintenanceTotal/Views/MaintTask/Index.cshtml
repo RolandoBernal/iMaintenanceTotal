@@ -61,7 +61,14 @@
                                     {
                                         @Html.AntiForgeryToken()
                                         <div class="modal-header">Add New Remider</div>
-                                        <div class="modal-body">@Html.TextBox("list-name")</div>
+                                        <div class="modal-body">
+                                            <p>Title: @Html.TextBox("mt-title")</p>
+                                            <p>Complete By: @Html.TextBox("mt-complete-by")</p>
+                                            <p>Frequency: @Html.TextBox("mt-frequency")</p>
+                                            <p>Notes: @Html.TextBox("mt-notes")</p>
+                                            <p>Remind Me On: @Html.TextBox("mt-remind-me-on")</p>
+                                            <p>Remind Me By: @Html.TextBox("mt-remind-me-by")</p>
+                                        </div>
                                         <div class="modal-footer"><input class="btn" type="submit" value="Submit" /></div>
                                     }
                                 </div>

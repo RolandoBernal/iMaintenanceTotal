@@ -28,7 +28,6 @@ namespace iMaintenanceTotal.Controllers
         // GET: MaintTask
         public ActionResult Index()
         {
-            
             string user_id = User.Identity.GetUserId();
             ApplicationUser me = repository.Users.FirstOrDefault(u => u.Id == user_id);
             ViewBag.DisplayName = me.DisplayName;
@@ -54,7 +53,13 @@ namespace iMaintenanceTotal.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                // Added insert logic here
+                string mt_title = collection.Get("mt-title");
+                string mt_complete_by = collection.Get("mt-complete-by");
+                string mt_frequency = collection.Get("mt-frequency");
+                string mt_notes = collection.Get("mt-notes");
+                string mt_remind_me_on = collection.Get("mt-remind-me-on");
+                string mt_remind_me_by = collection.Get("mt-remind-me-by");
 
                 return RedirectToAction("Index");
             }
