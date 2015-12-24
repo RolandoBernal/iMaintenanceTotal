@@ -54,12 +54,26 @@ namespace iMaintenanceTotal.Controllers
             try
             {
                 // Added insert logic here
+                string mt_id = collection.Get("mt-id");
                 string mt_title = collection.Get("mt-title");
                 string mt_complete_by = collection.Get("mt-complete-by");
                 string mt_frequency = collection.Get("mt-frequency");
                 string mt_notes = collection.Get("mt-notes");
                 string mt_remind_me_on = collection.Get("mt-remind-me-on");
                 string mt_remind_me_by = collection.Get("mt-remind-me-by");
+                string user_id = User.Identity.GetUserId();
+                ApplicationUser me = repository.Users.FirstOrDefault(u => u.Id == user_id);
+
+                MaintTask current_m_task = repository.GetMaintTaskById(int.Parse(mt_id));
+                repository.AddMaintTask(current_m_task.MaintTaskId, new MaintTask {
+                    Title = mt_title,
+                    CompleteBy = Convert.ToDateTime(mt_complete_by),
+                    Frequency = mt_frequency,
+                    Notes = mt_notes,
+                    RemindMeOn = Convert.ToDateTime(mt_remind_me_on),
+                    RemindMeBy = mt_remind_me_by,
+                    Owner = me
+                });
 
                 return RedirectToAction("Index");
             }

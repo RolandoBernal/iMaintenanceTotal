@@ -24,7 +24,12 @@ textarea {
 }
 
 .modal-dialog {
-    position: initial;
-    width: auto;
+    position: absolute;
+    width: 50%;
     margin: 10px;
+    left: 25%;
+}
+
+.modal-footer {
+    text-align: center;
 }

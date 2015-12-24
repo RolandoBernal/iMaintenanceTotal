@@ -60,10 +60,11 @@
                                     @using (Html.BeginForm("CreateMaintTask", "MaintTask", FormMethod.Post, new { id = "maint-task-form" }))
                                     {
                                         @Html.AntiForgeryToken()
+                                        @Html.Hidden("mt-id", ViewBag.MaintTaskId as object)
                                         <div class="modal-header">Add New Remider</div>
                                         <div class="modal-body">
                                             <p>Title: @Html.TextBox("mt-title")</p>
-                                            <p>Complete By: @Html.TextBox("mt-complete-by")</p>
+                                            <p>Complete By: @Html.TextBox("mt-complete-by", null, new { placeholder = "mm/dd/yyyy" })</p>
                                             <p>Frequency: @Html.TextBox("mt-frequency")</p>
                                             <p>Notes: @Html.TextBox("mt-notes")</p>
                                             <p>Remind Me On: @Html.TextBox("mt-remind-me-on")</p>
