@@ -33,3 +33,7 @@ textarea {
 .modal-footer {
     text-align: center;
 }
+
+.field-control {
+    text-align: left;
+}

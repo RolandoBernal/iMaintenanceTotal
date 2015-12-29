@@ -66,11 +66,6 @@ namespace iMaintenanceTotal.Models
             return result;
         }
 
-        public void AddMaintTask(int maintTaskId, MaintTask maintTask)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public bool DeleteMaintTask(int maintTaskId)
         {

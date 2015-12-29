@@ -26,7 +26,11 @@
                                                     <tr>
                                                         <th>Task</th>
                                                         <th>Category</th>
-                                                        <th>Reminder</th>
+                                                        <th>Created At</th>
+                                                        <th>Complete By</th>
+                                                        <th>Frequency</th>
+                                                        <th>Remind Me By</th>
+                                                        <th>Notes</th>
                                                         <th>Completed</th>
                                                         <th>Edit</th>
                                                         <th>Delete</th>
@@ -38,8 +42,12 @@
                                                     { 
                                                         <tr>
                                                             <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Category)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.CompleteBy)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Frequency)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.RemindMeBy)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Notes)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.Completed)</td>
                                                             <td>@Html.ActionLink("Edit", "Edit", new { id = item.MaintTaskId })</td>
                                                             <td>@Html.ActionLink("Back to List", "Index")</td>
@@ -57,20 +65,43 @@
                         <div id="maint-task-modal" role="dialog" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    @using (Html.BeginForm("CreateMaintTask", "MaintTask", FormMethod.Post, new { id = "maint-task-form" }))
+                                    @using (Html.BeginForm("CreateMaintTask", "MaintTask", FormMethod.Post, new { id = "maint-task-form", @class = "form-horizontal", role = "form" }))
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.Hidden("mt-id", ViewBag.MaintTaskId as object)
                                         <div class="modal-header">Add New Remider</div>
                                         <div class="modal-body">
-                                            <p>Title: @Html.TextBox("mt-title")</p>
-                                            <p>Complete By: @Html.TextBox("mt-complete-by", null, new { placeholder = "mm/dd/yyyy" })</p>
-                                            <p>Frequency: @Html.TextBox("mt-frequency")</p>
-                                            <p>Notes: @Html.TextBox("mt-notes")</p>
-                                            <p>Remind Me On: @Html.TextBox("mt-remind-me-on")</p>
-                                            <p>Remind Me By: @Html.TextBox("mt-remind-me-by")</p>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Title:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-title")</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Complete By:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-complete-by", null, new { @placeholder = "mm/dd/yyyy" })</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Frequency:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-frequency")</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Category:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-category")</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Notes:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextArea("mt-notes")</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Remind Me On:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-remind-me-on", null, new { @placeholder = "mm/dd/yyyy" })</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-4 control-label">Remind My By:</div>
+                                                <div class="col-lg-8 field-control">@Html.TextBox("mt-remind-me-by")</div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer"><input class="btn" type="submit" value="Submit" /></div>
+                                        
                                     }
                                 </div>
                             </div>

@@ -54,32 +54,39 @@ namespace iMaintenanceTotal.Controllers
             try
             {
                 // Added insert logic here
-                string mt_id = collection.Get("mt-id");
+                //string mt_id = collection.Get("mt-id");
                 string mt_title = collection.Get("mt-title");
                 string mt_complete_by = collection.Get("mt-complete-by");
                 string mt_frequency = collection.Get("mt-frequency");
                 string mt_notes = collection.Get("mt-notes");
+                string mt_category = collection.Get("mt-category");
                 string mt_remind_me_on = collection.Get("mt-remind-me-on");
                 string mt_remind_me_by = collection.Get("mt-remind-me-by");
+                DateTime mt_remind_me_on_date = DateTime.Parse(mt_remind_me_on);
+                DateTime mt_complete_by_date = DateTime.Parse(mt_complete_by);
                 string user_id = User.Identity.GetUserId();
                 ApplicationUser me = repository.Users.FirstOrDefault(u => u.Id == user_id);
 
-                MaintTask current_m_task = repository.GetMaintTaskById(int.Parse(mt_id));
-                repository.AddMaintTask(current_m_task.MaintTaskId, new MaintTask {
+                //MaintTask current_m_task = repository.GetMaintTaskById(int.Parse(mt_id));
+                repository.AddMaintTask(new MaintTask {
                     Title = mt_title,
-                    CompleteBy = Convert.ToDateTime(mt_complete_by),
+                    CreatedAt = DateTime.Now,
+                    CompleteBy = mt_complete_by_date,
                     Frequency = mt_frequency,
                     Notes = mt_notes,
-                    RemindMeOn = Convert.ToDateTime(mt_remind_me_on),
+                    RemindMeOn = mt_remind_me_on_date,
                     RemindMeBy = mt_remind_me_by,
+                    Category = mt_category,
                     Owner = me
                 });
 
                 return RedirectToAction("Index");
+                //return View();
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                //return View();
+                return RedirectToAction("Index");
             }
         }
 
