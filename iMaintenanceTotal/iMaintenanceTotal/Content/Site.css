@@ -28,6 +28,25 @@ textarea {
 /* My own styling starts here 
 -------------------------------*/
 
+.welcome-imaint {
+    padding-top: 100px !important;
+}
+
+
+.lead {
+    margin-bottom: 50px !important;
+    padding-top: 30px !important;
+}
+
+.jumbotron-p {
+    margin-bottom: 90px !important;
+}
+.btn-join {
+    margin-right: 20px;
+    padding-right: 30px;
+    padding-left: 40px;
+
+}
 .modal-dialog {
     position: absolute;
     width: 50%;
@@ -39,6 +58,11 @@ textarea {
     color: #FFF;
     background-color: #2C3E50;
     border-color: #2C3E50;
+}
+
+.modal-body {
+    font-size: 14px;
+    font-weight: 200;
 }
 
 .modal-close-top {
