@@ -23,11 +23,26 @@ textarea {
     max-width: 280px;
 }
 
+
+
+/* My own styling starts here 
+-------------------------------*/
+
 .modal-dialog {
     position: absolute;
     width: 50%;
     margin: 10px;
     left: 25%;
+}
+
+.modal-header {
+    color: #FFF;
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+
+.modal-close-top {
+    color: #fff !important;
 }
 
 .modal-footer {
@@ -38,7 +53,10 @@ textarea {
     text-align: left;
 }
 
+.panel-body {
+    font-size: 10px;
+}
 
-/* My own styling starts here 
--------------------------------*/
-
+.jumbotron {
+    padding-top: 0px;
+}
