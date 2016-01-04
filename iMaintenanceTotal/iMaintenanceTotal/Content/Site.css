@@ -54,7 +54,8 @@ textarea {
     left: 25%;
 }
 
-.modal-header {
+.modal-header,
+.modal-footer {
     color: #FFF;
     background-color: #2C3E50;
     border-color: #2C3E50;
