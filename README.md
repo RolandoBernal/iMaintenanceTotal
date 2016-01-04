@@ -6,7 +6,8 @@ Back-End Final Capstone Project app to record and remind you all things maintena
 * As a user, I can login and create a user profile.
 * As a user, I want to create a maintenance task reminder with a name, notes, frequency, and a time in the future. 
 * As a user, I want to view a list of all future reminders, and be able delete those reminders.
-* As a user, I can register my phone number to get reminders of a task
+* As a user, I can register my phone number to get reminders of a task.
+* As an reminder system, I want to notify a user via SMS an arbitrary interval before a future maintenance task is due.
 
 
 ###Advanced Acceptance Criteria:
