@@ -31,7 +31,10 @@ textarea {
 .welcome-imaint {
     padding-top: 100px !important;
 }
-
+.navbar-brand-imainttot:hover, .navbar-brand-imainttot:focus {
+    color: #FFF !important;
+    background-color: transparent !important;
+}
 
 .lead {
     margin-bottom: 50px !important;
