@@ -47,6 +47,10 @@ textarea {
     padding-left: 40px;
 
 }
+
+.user-profile-container {
+    margin-top: -15px !important;
+}
 .modal-dialog {
     position: absolute;
     width: 50%;
