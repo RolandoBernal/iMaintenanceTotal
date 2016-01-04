@@ -51,6 +51,16 @@ textarea {
 .user-profile-container {
     margin-top: -15px !important;
 }
+.btn-primary-add-new-rem {
+    color: #FFF;
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+    margin-top: 8px;
+}
+.btn-primary-add-new-rem:hover, .btn-primary-add-new-rem:focus {
+    color: #18BC9C;
+    background-color: transparent;
+}
 .modal-dialog {
     position: absolute;
     width: 50%;
