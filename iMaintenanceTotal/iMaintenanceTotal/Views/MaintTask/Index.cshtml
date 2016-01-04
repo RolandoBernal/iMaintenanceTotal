@@ -29,7 +29,7 @@
                                                         <th>Created At</th>
                                                         <th>Complete By</th>
                                                         <th>Frequency</th>
-                                                        <th>Remind Me By</th>
+                                                        <!--<th>Remind Me By</th>-->
                                                         <th>Notes</th>
                                                         <th>Completed</th>
                                                         <th>Edit</th>
@@ -46,10 +46,9 @@
                                                             <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.CompleteBy)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.Frequency)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.RemindMeBy)</td>
+                                                            <!--<td>@Html.DisplayFor(modelItem => item.RemindMeBy)</td>-->
                                                             <td>@Html.DisplayFor(modelItem => item.Notes)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.Completed)</td>
-                                                            <!-- <td>@Html.ActionLink("Edit", "Edit", new { id = item.MaintTaskId })</td> -->
                                                             <td>
                                                                 @Html.ActionLink(" ", "Edit ",
                                                                                     new { Controller = "MaintTaskController", id = item.MaintTaskId },
@@ -107,10 +106,10 @@
                                                 <div class="col-lg-4 control-label">Remind Me On:</div>
                                                 <div class="col-lg-8 field-control">@Html.TextBox("mt-remind-me-on", null, new { @placeholder = "mm/dd/yyyy" })</div>
                                             </div>
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <div class="col-lg-4 control-label">Remind My By:</div>
                                                 <div class="col-lg-8 field-control">@Html.TextBox("mt-remind-me-by")</div>
-                                            </div>
+                                            </div>-->
                                             
                                         </div>
                                         <div class="modal-footer"><input class="btn btn-default" type="submit" value="Submit" /></div>

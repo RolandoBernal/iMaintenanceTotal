@@ -61,7 +61,7 @@ namespace iMaintenanceTotal.Controllers
                 string mt_notes = collection.Get("mt-notes");
                 string mt_category = collection.Get("mt-category");
                 string mt_remind_me_on = collection.Get("mt-remind-me-on");
-                string mt_remind_me_by = collection.Get("mt-remind-me-by");
+                string mt_remind_me_by = "Phone"; //collection.Get("mt-remind-me-by");
                 DateTime mt_remind_me_on_date = DateTime.Parse(mt_remind_me_on);
                 DateTime mt_complete_by_date = DateTime.Parse(mt_complete_by);
                 string user_id = User.Identity.GetUserId();
