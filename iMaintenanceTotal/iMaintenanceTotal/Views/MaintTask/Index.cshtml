@@ -51,16 +51,14 @@
                                                             <td>@Html.DisplayFor(modelItem => item.Completed)</td>
                                                             <!-- <td>@Html.ActionLink("Edit", "Edit", new { id = item.MaintTaskId })</td> -->
                                                             <td>
-                                                                @Html.ActionLink(linkText: " ",
-                                                                            actionName: "index",
-                                                                            routeValues: null,
-                                                                            htmlAttributes: new { id = item.MaintTaskId, @class = "btn btn-primary btn-sm glyphicon glyphicon-pencil" })
+                                                                @Html.ActionLink(" ", "Edit ",
+                                                                                    new { Controller = "MaintTaskController", id = item.MaintTaskId },
+                                                                                    new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink(linkText: " ",
-                                                                            actionName: "index",
-                                                                            routeValues: null,
-                                                                            htmlAttributes: new { @class = "btn btn-danger btn-sm glyphicon glyphicon-remove" })
+                                                                @Html.ActionLink(" ", "Delete ", 
+                                                                                    new { Controller = "MaintTaskController", id = item.MaintTaskId }, 
+                                                                                    new { @class = "btn btn-danger btn-xs glyphicon glyphicon-remove", onclick = "return confirm('Are you sure?);" })
                                                             </td>
                                                         </tr>
                                                     }
