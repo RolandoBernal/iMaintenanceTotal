@@ -31,7 +31,7 @@ namespace iMaintenanceTotal.Controllers
             string user_id = User.Identity.GetUserId();
             ApplicationUser me = repository.Users.FirstOrDefault(u => u.Id == user_id);
             ViewBag.DisplayName = me.DisplayName;
-            var maintTasks = repository.GetAllMaintTasks();
+            var maintTasks = repository.GetMaintTasks(me);
             return View(maintTasks);
         }
 
