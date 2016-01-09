@@ -217,6 +217,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ModalTrigger.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -260,6 +261,8 @@
     <Content Include="Views\MaintTask\Index.cshtml" />
     <Content Include="Views\Shared\_NavPartial.cshtml" />
     <Content Include="Views\Shared\_iMaintenanceTotalLayout.cshtml" />
+    <Content Include="Views\MaintTask\ModalPartial.cshtml" />
+    <Content Include="Views\MaintTask\dataRowView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
