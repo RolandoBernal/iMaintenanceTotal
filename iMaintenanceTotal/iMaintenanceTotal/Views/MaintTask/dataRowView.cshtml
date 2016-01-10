@@ -10,14 +10,12 @@
     <td>@Html.DisplayFor(modelItem => item.CompleteBy)</td>
     <td>@Html.DisplayFor(modelItem => item.Frequency)</td>
     <td>@Html.DisplayFor(modelItem => item.Notes)</td>
-    <td>@Html.DisplayFor(modelItem => item.Completed)</td>
+    <!--<td>@Html.DisplayFor(modelItem => item.Completed)</td>-->
     <td>
         <button type="button" class="btn btn-primary btn-xs glyphicon glyphicon-pencil editor-container" data-id="@item.MaintTaskId"></button>
     </td>
     <td>
-        @Html.ActionLink(" ", "Delete",
-        new { Controller = "MaintTask", id = item.MaintTaskId },
-        new { @class = "btn btn-danger btn-xs glyphicon glyphicon-remove", onclick = "return confirm('Are you sure?);" })
+        <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-remove" data-id="@item.MaintTaskId"></button>
     </td>
 </tr>
 
