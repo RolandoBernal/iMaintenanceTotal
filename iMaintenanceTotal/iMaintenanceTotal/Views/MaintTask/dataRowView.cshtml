@@ -3,19 +3,13 @@
     var item = Model;
 }
 
-<tr>
     <td>@Html.DisplayFor(modelItem => item.Title)</td>
     <td>@Html.DisplayFor(modelItem => item.Category)</td>
     <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
     <td>@Html.DisplayFor(modelItem => item.CompleteBy)</td>
     <td>@Html.DisplayFor(modelItem => item.Frequency)</td>
     <td>@Html.DisplayFor(modelItem => item.Notes)</td>
-    <!--<td>@Html.DisplayFor(modelItem => item.Completed)</td>-->
-    <td>
-        <button type="button" class="btn btn-primary btn-xs glyphicon glyphicon-pencil editor-container" data-id="@item.MaintTaskId"></button>
-    </td>
-    <td>
-        <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-remove" data-id="@item.MaintTaskId"></button>
-    </td>
-</tr>
+    <td><button type="button" class="btn btn-primary btn-xs glyphicon glyphicon-pencil editor-container" data-id="@item.MaintTaskId"></button></td>
+    <td><a href="/MaintTask/Delete/@item.MaintTaskId" formnovalidate class="btn btn-danger btn-xs glyphicon glyphicon-trash"></a></td>
+
 

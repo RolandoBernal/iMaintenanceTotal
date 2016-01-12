@@ -1,6 +1,6 @@
 ﻿@model iMaintenanceTotal.Models.MaintTask
 
-            <div class="modal-header">
+            <div class="modal-header mod-head-edit">
                 <button type="button" class="close modal-close-top" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                 Edit Reminder
             </div>
@@ -19,32 +19,18 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.MaintTaskId)
                                         <div class="modal-body">
-                                            <div class="">
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Title:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextBoxFor(model => model.Title)</div>
+                                                <div class="row">
+                                                    <div class="col-sm-5 form-group">
+                                                        <label>Title:</label>@Html.TextBoxFor(model => model.Title)
+                                                        <label>Complete By:</label>@Html.TextBoxFor(model => model.CompleteBy, null, new { @placeholder = "mm/dd/yyyy" })
+                                                        <label>Frequency:</label>@Html.TextBoxFor(model => model.Frequency)
+                                                    </div>
+                                                    <div class="col-sm-5 form-group">
+                                                        <label>Category:</label>@Html.TextBoxFor(model => model.Category)
+                                                        <label>Notes:</label>@Html.TextAreaFor(model => model.Notes)
+                                                        <label>Remind Me On:</label>@Html.TextBoxFor(model => model.RemindMeOn, null, new { @placeholder = "mm/dd/yyyy" })
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Complete By:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextBoxFor(model => model.CompleteBy, null, new { @placeholder = "mm/dd/yyyy" })</div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Repeat:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextBoxFor(model => model.Frequency)</div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Category:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextBoxFor(model => model.Category)</div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Notes:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextAreaFor(model => model.Notes)</div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-lg-4 control-label">Remind Me On:</div>
-                                                    <div class="col-lg-8 field-control">@Html.TextBoxFor(model => model.RemindMeOn, null, new { @placeholder = "mm/dd/yyyy" })</div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

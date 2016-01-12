@@ -99,10 +99,12 @@ namespace iMaintenanceTotal.Controllers
         {
             if (TryValidateModel(input))
             {
-                var CreatedAt = DateTime.Now;
+                input.CreatedAt = DateTime.Now;
+                input.RemindMeBy = "Phone";
                 db.Entry(input).State = EntityState.Modified;
                 db.SaveChanges();
-                return PartialView("dataRowView", (MaintTask)input);
+                //return PartialView("dataRowView", (MaintTask)input);
+                return RedirectToAction("Index");
             }
 
             Response.StatusCode = 400;
@@ -153,17 +155,17 @@ namespace iMaintenanceTotal.Controllers
 
 
         // GET: MaintTask/Delete/5
-        [Authorize]
-        public ActionResult Delete(int id)
-        {
-            MaintTask item_to_delete = repository.GetMaintTaskById(id);
-            //return View(item_to_delete);
-            return RedirectToAction("Index");
-        }
+        //[Authorize]
+        //public ActionResult Delete(int id)
+        //{
+        //    MaintTask item_to_delete = repository.GetMaintTaskById(id);
+        //    //return View(item_to_delete);
+        //    return RedirectToAction("Index");
+        //}
 
         // POST: MaintTask/Delete/5
-        [HttpPost, Authorize]
-        public ActionResult Delete(int id, FormCollection collection)
+        [Authorize]
+        public ActionResult Delete(int id)
         {
             try
             {
