@@ -131,6 +131,15 @@ namespace iMaintenanceTotal.Models
             return query.ToList<MaintTask>(); // Same as query.ToList();
         }
 
+        public IEnumerable<MaintTask> GetCurrentMaintTask()
+        {
+            var now = DateTime.Now;
+            var tasks_due = context.MaintTasks.Where(task => 
+                task.RemindMeOn.Subtract(now).Seconds >= 0 &&
+                task.RemindMeOn.Subtract(now).Seconds <= 60);
+
+            return tasks_due;
+        }
 
     }
 }
