@@ -122,20 +122,6 @@ namespace iMaintenanceTotal.Controllers
             public string Category { get; set; }
             public ApplicationUser Owner { get; set; }
             */
-            /*
-            try
-            {
-                MaintTask item_to_edit = repository.GetMaintTaskById(id);
-                if (TryUpdateModel(item_to_edit, "", new string[] { "Title", "CompleteBy", "Frequency", "Notes", "RemindMeOn", "Category" }))
-                {
-                    db.SaveChanges();
-                };
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            } */
         }
 
         // GET: MaintTask/Edit/5
@@ -152,16 +138,6 @@ namespace iMaintenanceTotal.Controllers
             }
             return PartialView("ModalPartial", item_to_edit);
         }
-
-
-        // GET: MaintTask/Delete/5
-        //[Authorize]
-        //public ActionResult Delete(int id)
-        //{
-        //    MaintTask item_to_delete = repository.GetMaintTaskById(id);
-        //    //return View(item_to_delete);
-        //    return RedirectToAction("Index");
-        //}
 
         // POST: MaintTask/Delete/5
         [Authorize]
